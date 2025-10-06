@@ -1,5 +1,5 @@
 console.log('moon loving started✨')
-const BLIP_COUNT=25
+const BLIP_COUNT=200
 const SWEEP_SPEED=0.015
 const SWEEP_HALF_WIDTH=Math.PI/42
 const FADE_IN_SPEED=0.15
