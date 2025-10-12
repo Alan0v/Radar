@@ -1,11 +1,12 @@
 console.log('moon loving started✨')
+/* ================= Radar Canvas Config ================= */
 const BLIP_COUNT=25
 const SWEEP_SPEED=0.015
 const SWEEP_HALF_WIDTH=Math.PI/42
 const FADE_IN_SPEED=0.15
 const FADE_OUT_SPEED=0.025
 const MAX_BLIP_RADIUS_RATIO=0.95
-const ENABLE_JITTER=!0
+const ENABLE_JITTER=!1
 const JITTER_R=0.12
 const JITTER_THETA=0.0004
 const ENABLE_TRAIL=!0
@@ -44,7 +45,10 @@ function drawSweep(){const g=ctx.createRadialGradient(centerX,centerY,0,centerX,
 let mouseXRatio=0.5,mouseYRatio=0.5
 document.addEventListener('mousemove',e=>{mouseXRatio=e.clientX/window.innerWidth;mouseYRatio=e.clientY/window.innerHeight})
 function loop(){frameCount++;if(ENABLE_TRAIL)fadeTrail();ctx.clearRect(0,0,w,h);ctx.save();ctx.beginPath();ctx.arc(centerX,centerY,radius,-Math.PI/2,Math.PI/2);ctx.lineTo(centerX,centerY);ctx.closePath();ctx.clip();if(ENABLE_TRAIL)drawTrail();drawBackground(mouseXRatio,mouseYRatio);drawRings();updateBlips();drawBlips();drawSweep();if(ENABLE_TRAIL)stampSweepToTrail();ctx.restore();if(BOUNCE_MODE){sweepAngle+=sweepDir*SWEEP_SPEED;if(sweepAngle>=Math.PI/2){sweepAngle=Math.PI/2;sweepDir=-1}else if(sweepAngle<=-Math.PI/2){sweepAngle=-Math.PI/2;sweepDir=1}}else{sweepAngle+=SWEEP_SPEED}requestAnimationFrame(loop)}
-loop();(function(){document.body.classList.add('hero-pre');window.addEventListener('load',()=>{requestAnimationFrame(()=>{document.body.classList.add('hero-ready')})})})();(function(){const c=document.getElementById('radarCanvas');if(!c)return;let t=0;function pulse(){t+=0.008;const v=0.96+Math.sin(t)*0.04;c.style.filter=`saturate(115%) brightness(${v})`;requestAnimationFrame(pulse)}requestAnimationFrame(pulse)})()
+loop()
+;(function(){document.body.classList.add('hero-pre');window.addEventListener('load',()=>{requestAnimationFrame(()=>{document.body.classList.add('hero-ready')})})})()
+;(function(){const c=document.getElementById('radarCanvas');if(!c)return;let t=0;function pulse(){t+=0.008;const v=0.96+Math.sin(t)*0.04;c.style.filter=`saturate(115%) brightness(${v})`;requestAnimationFrame(pulse)}requestAnimationFrame(pulse)})()
+/* ================= Feature Cards ================= */
 document.addEventListener('DOMContentLoaded',()=>{const wrappers=document.querySelectorAll('.feature-card-wrapper')
     const cards=document.querySelectorAll('.feature-card')
     if(!cards.length||!wrappers.length)return
@@ -97,7 +101,9 @@ document.addEventListener('DOMContentLoaded',()=>{const wrappers=document.queryS
             const scale=s.hovering?SCALE_HOV:1
             s.card.style.transform=`translateZ(0) rotateX(${rx}deg) rotateY(${ry}deg) scale(${scale})`
             if(!s.hovering&&near)s.card.classList.remove('tilt-active')})
-        if(active)requestAnimationFrame(loopTilt);else rafRunning=!1}});(function(){const section=document.getElementById('download')
+        if(active)requestAnimationFrame(loopTilt);else rafRunning=!1}})
+/* ================= Download Section Anim / Device Tilt ================= */
+;(function(){const section=document.getElementById('download')
     if(!section)return
     const prefersReduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const isSmall=window.matchMedia('(max-width: 680px)').matches
@@ -139,10 +145,14 @@ document.addEventListener('DOMContentLoaded',()=>{const wrappers=document.queryS
             requestAnimationFrame(step)}
         window.addEventListener('resize',resize)
         resize()
-        step()}})();(function(){const y=document.getElementById('year')
+        step()}})()
+/* ================= Footer Misc ================= */
+;(function(){const y=document.getElementById('year')
     if(y)y.textContent=new Date().getFullYear()
     document.querySelectorAll('.soc-link,.footer-links a,.legal-inline a,.news-form button,.news-form input').forEach(el=>{el.addEventListener('focus',()=>el.classList.add('kb-focus'))
-        el.addEventListener('blur',()=>el.classList.remove('kb-focus'))})})();(function(){const header=document.getElementById('siteHeader')
+        el.addEventListener('blur',()=>el.classList.remove('kb-focus'))})})()
+/* ================= Header Behaviours ================= */
+;(function(){const header=document.getElementById('siteHeader')
     if(!header)return
     const MOBILE=window.matchMedia('(max-width:600px)').matches
     const SHOW_AT=MOBILE?0:120
@@ -153,72 +163,356 @@ document.addEventListener('DOMContentLoaded',()=>{const wrappers=document.queryS
     if(window.scrollY>SHOW_AT||SHOW_AT===0){header.classList.add('is-visible');visible=!0}
     document.querySelectorAll('[data-scroll-target]').forEach(btn=>{btn.addEventListener('click',e=>{const sel=btn.getAttribute('data-scroll-target')
         const target=document.querySelector(sel)
-        if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}})})})()
+        if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}})})
+    /* Header language + duplication avoided: translation system handles click globally */})()
+/* Smooth scroll to top anchors */
 document.querySelectorAll('a[href="#top"]').forEach(a=>{a.addEventListener('click',e=>{const topEl=document.getElementById('top')||document.body
     e.preventDefault()
-    topEl.scrollIntoView({behavior:'smooth',block:'start'})})});(function(){const apple='https://apps.apple.com/us/app/radarguard-alerts-speed-camera/id6751195451'
+    topEl.scrollIntoView({behavior:'smooth',block:'start'})})})
+/* Unified smart download logic for any button with data-action="smart-download" */
+;(function(){
+    const apple='https://apps.apple.com/us/app/radarguard-alerts-speed-camera/id6751195451?platform=iphone'
     const android='https://play.google.com/store/apps/details?id=com.SpeedCamera.RadarAlerts'
-    function handleSmartDownload(e){e.preventDefault()
+    function handleSmartDownload(e){
+        e.preventDefault()
         const ua=navigator.userAgent||navigator.vendor||window.opera
         const isAndroid=/Android/i.test(ua)
         const isIOS=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)
-        if(isAndroid){window.location.href=android}else if(isIOS){window.location.href=apple}else{document.querySelector('#download')?.scrollIntoView({behavior:'smooth',block:'start'})}}
-    document.querySelectorAll('[data-action="smart-download"]').forEach(btn=>{btn.addEventListener('click',handleSmartDownload)
-        btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){handleSmartDownload(e)}})})})();(function(){const DICT={en:{'meta.title':'RadarGuard Alerts','header.homeAria':'RadarGuard Alerts: Speed camera home','brand.logoAlt':'RadarGuard logo','lang.select':'Select language','cta.download':'Download','cta.downloadAria':'Download','cta.features':'Features','product.type':'Speed camera','hero.headingHtml':'Instant <span class="grad">Speed Camera</span> Awareness','hero.lead':'Real‑time speed camera & hazard intelligence — fast, precise, privacy‑first. Adaptive radar visuals help you anticipate instead of react.','flags.lowLatency':'Ultra‑low latency','flags.privacy':'Privacy‑first','flags.filtering':'Adaptive filtering','features.sectionTitle':'Powerful Features','features.sectionSub':'Core capabilities for real-time awareness','features.speed.title':'Speed Detection','features.speed.desc':'Instant alerts for nearby speed cameras and road limits.','features.gps.title':'Precision GPS','features.gps.desc':'Ultra-accurate positioning for better awareness.','features.alerts.title':'Smart Alerts','features.alerts.desc':'Intelligent notifications adapted to your driving route.','features.community.title':'Community Reports','features.community.desc':'Stay informed with live updates from other users.','features.route.title':'Route Prediction','features.route.desc':'Optimized navigation and hazard detection system.','features.validation.title':'Crowd Validation','features.validation.desc':'Camera updates weighted by recent confirmations to reduce stale alerts.','download.titleHtml':'RadarGuard Alerts: <span class="dl-accent">Speed camera</span>','download.tagline':'Real‑time speed camera & hazard intelligence that keeps you aware before you arrive — optimized for accuracy, battery efficiency and privacy.','download.point1':'Ultra‑low latency live alerts.','download.point2':'Privacy‑first: no selling of trip data.','download.point3':'Crowd‑validated camera network.','download.betaHtml':'Want early feature previews? <a href="#beta" class="dl-link" data-i18n="download.betaLink">Join the beta</a>.','download.betaLink':'Join the beta','download.appStoreAria':'Download RadarGuard Alerts on the App Store','download.playStoreAria':'Download RadarGuard Alerts on Google Play','download.devicePreviewAria':'App interface preview','download.deviceImageAlt':'RadarGuard Alerts live interface','store.getItOn':'Get it on','store.appStore':'App Store','store.playStore':'Google Play','footer.tagline':'Real‑time speed camera & hazard awareness. Drive informed.','footer.productHead':'Product','footer.download':'Download','footer.betaAccess':'Beta Access','footer.pricingSoon':'Pricing (Soon)','footer.faqPlaceholder':'FAQ (Placeholder)','footer.resourcesHead':'Resources','footer.support':'Support','footer.blogPlaceholder':'Blog (Placeholder)','footer.docsPlanned':'Docs (Planned)','footer.changelog':'Changelog','footer.community':'Community','footer.companyHead':'Company','footer.aboutUs':'About Us','footer.privacyPolicy':'Privacy Policy','footer.termsOfUse':'Terms of Use','footer.careersFuture':'Careers (Future)','footer.legalCenter':'Legal Center','footer.stayUpdated':'Stay Updated','footer.newsText':'Get early radar data drops & beta feature access. No spam.','footer.emailLabel':'Email','footer.subscribeBtn':'Subscribe','footer.privacyNoteHtml':'By subscribing you agree to our <a href="#privacy" data-i18n="footer.privacyPolicyLink">privacy policy</a>.','footer.privacyPolicyLink':'privacy policy','footer.privacyPolicyShort':'Privacy','footer.termsShort':'Terms','footer.cookies':'Cookies','footer.contact':'Contact','footer.copyrightHtml':'&copy; <span id="year"></span> RadarGuard Alerts: Speed camera. All rights reserved.'},tr:{'meta.title':'RadarGuard Alerts','header.homeAria':'RadarGuard Alerts: Hız kamerası ana sayfa','brand.logoAlt':'RadarGuard logo','lang.select':'Dil seç','cta.download':'İndir','cta.downloadAria':'İndir','cta.features':'Özellikler','product.type':'Speed camera','hero.headingHtml':'Anında <span class="grad">Hız Kamerası</span> Farkındalığı','hero.lead':'Gerçek zamanlı hız kamerası & tehlike zekâsı — hızlı, hassas, gizlilik öncelikli. Uyarlanabilir radar görselleri tepki yerine öngörü sağlar.','flags.lowLatency':'Çok düşük gecikme','flags.privacy':'Gizlilik öncelikli','flags.filtering':'Uyarlanabilir filtreleme','features.sectionTitle':'Güçlü Özellikler','features.sectionSub':'Gerçek zamanlı farkındalık yetenekleri','features.speed.title':'Hız Tespiti','features.speed.desc':'Yakındaki hız kameraları ve sınırlar için anlık uyarılar.','features.gps.title':'Hassas GPS','features.gps.desc':'Daha iyi farkındalık için yüksek doğruluk.','features.alerts.title':'Akıllı Uyarılar','features.alerts.desc':'Sürüş rotana göre uyarlanmış bildirimler.','features.community.title':'Topluluk Raporları','features.community.desc':'Diğer kullanıcılardan canlı güncellemeler.','features.route.title':'Rota Tahmini','features.route.desc':'Optimize navigasyon ve tehlike tespiti.','features.validation.title':'Topluluk Doğrulama','features.validation.desc':'Ağırlıklı teyitlerle eski uyarılar azalır.','download.titleHtml':'RadarGuard Alerts: <span class="dl-accent">Speed Camera</span>','download.tagline':'Doğruluk, pil verimliliği ve gizlilik için optimize gerçek zamanlı hız kamerası & tehlike zekâsı.','download.point1':'Çok düşük gecikmeli canlı uyarılar.','download.point2':'Gizlilik öncelikli: veri satışı yok.','download.point3':'Topluluk doğrulamalı kamera ağı.','download.betaHtml':'Erken özellik ister misin? <a href="#beta" class="dl-link" data-i18n="download.betaLink">Beta\'ya katıl</a>.','download.betaLink':'Beta\'ya katıl','download.appStoreAria':'RadarGuard Alerts App Store indirme','download.playStoreAria':'RadarGuard Alerts Google Play indirme','download.devicePreviewAria':'Uygulama arayüz önizleme','download.deviceImageAlt':'RadarGuard Alerts canlı arayüz','store.getItOn':'İndir','store.appStore':'App Store','store.playStore':'Google Play','footer.tagline':'Gerçek zamanlı hız kamerası & tehlike farkındalığı. Bilinçli sür.','footer.productHead':'Ürün','footer.download':'İndir','footer.betaAccess':'Beta Erişimi','footer.pricingSoon':'Fiyatlandırma (Yakında)','footer.faqPlaceholder':'SSS (Yer Tutucu)','footer.resourcesHead':'Kaynaklar','footer.support':'Destek','footer.blogPlaceholder':'Blog (Yer Tutucu)','footer.docsPlanned':'Dokümanlar (Planlı)','footer.changelog':'Değişiklik Günlüğü','footer.community':'Topluluk','footer.companyHead':'Şirket','footer.aboutUs':'Hakkımızda','footer.privacyPolicy':'Gizlilik Politikası','footer.termsOfUse':'Kullanım Şartları','footer.careersFuture':'Kariyer (Gelecek)','footer.legalCenter':'Hukuk Merkezi','footer.stayUpdated':'Güncel Kal','footer.newsText':'Erken radar verisi & beta erişimi. Spam yok.','footer.emailLabel':'E‑posta','footer.subscribeBtn':'Abone Ol','footer.privacyNoteHtml':'Abone olarak <a href="#privacy" data-i18n="footer.privacyPolicyLink">gizlilik politikasını</a> kabul edersin.','footer.privacyPolicyLink':'gizlilik politikasını','footer.privacyPolicyShort':'Gizlilik','footer.termsShort':'Şartlar','footer.cookies':'Çerezler','footer.contact':'İletişim','footer.copyrightHtml':'&copy; <span id="year"></span> RadarGuard Alerts: Speed camera. Tüm hakları saklıdır.'},de:{'meta.title':'RadarGuard Alerts','header.homeAria':'RadarGuard Alerts: Blitzer Startseite','brand.logoAlt':'RadarGuard Logo','lang.select':'Sprache wählen','cta.download':'Herunterladen','cta.downloadAria':'Herunterladen','cta.features':'Funktionen','product.type':'Speed camera','hero.headingHtml':'Sofortiges <span class="grad">Blitzer</span> Bewusstsein','hero.lead':'Echtzeit Blitzer & Gefahren‑Intelligenz – schnell, präzise, datenschutzorientiert. Adaptive Radarvisualisierung hilft vorauszuplanen.','flags.lowLatency':'Sehr geringe Latenz','flags.privacy':'Datenschutz zuerst','flags.filtering':'Adaptive Filterung','features.sectionTitle':'Leistungsstarke Funktionen','features.sectionSub':'Kernfunktionen für Echtzeit-Wahrnehmung','features.speed.title':'Geschwindigkeits-Erkennung','features.speed.desc':'Sofortwarnungen für nahe Blitzer & Limits.','features.gps.title':'Präzises GPS','features.gps.desc':'Hohe Genauigkeit für bessere Wahrnehmung.','features.alerts.title':'Intelligente Warnungen','features.alerts.desc':'Kontextbezogene Hinweise entlang deiner Route.','features.community.title':'Community Meldungen','features.community.desc':'Aktuelle Updates von anderen Fahrern.','features.route.title':'Routenprognose','features.route.desc':'Optimierte Navigation & Gefahrenerkennung.','features.validation.title':'Crowd Validierung','features.validation.desc':'Gewichtete Bestätigungen reduzieren veraltete Meldungen.','download.titleHtml':'RadarGuard Alerts: <span class="dl-accent">Speed Camera</span>','download.tagline':'Echtzeit Blitzer & Gefahren‑Intelligenz für Genauigkeit, Akkuschonung & Datenschutz.','download.point1':'Sehr geringe Latenz bei Live-Warnungen.','download.point2':'Datenschutz zuerst: keine Weitergabe von Fahrtdaten.','download.point3':'Crowd‑validiertes Kameranetzwerk.','download.betaHtml':'Frühe Funktionen testen? <a href="#beta" class="dl-link" data-i18n="download.betaLink">Zur Beta</a>.','download.betaLink':'Zur Beta','download.appStoreAria':'RadarGuard Alerts im App Store herunterladen','download.playStoreAria':'RadarGuard Alerts bei Google Play herunterladen','download.devicePreviewAria':'App Interface Vorschau','download.deviceImageAlt':'RadarGuard Alerts Live Interface','store.getItOn':'Hol es im','store.appStore':'App Store','store.playStore':'Google Play','footer.tagline':'Echtzeit Blitzer- & Gefahrenbewusstsein. Fahre informiert.','footer.productHead':'Produkt','footer.download':'Herunterladen','footer.betaAccess':'Beta Zugang','footer.pricingSoon':'Preise (Bald)','footer.faqPlaceholder':'FAQ (Platzhalter)','footer.resourcesHead':'Ressourcen','footer.support':'Unterstützung','footer.blogPlaceholder':'Blog (Platzhalter)','footer.docsPlanned':'Doku (Geplant)','footer.changelog':'Changelog','footer.community':'Community','footer.companyHead':'Unternehmen','footer.aboutUs':'Über Uns','footer.privacyPolicy':'Datenschutzerklärung','footer.termsOfUse':'Nutzungsbedingungen','footer.careersFuture':'Karriere (Zukünftig)','footer.legalCenter':'Rechtszentrum','footer.stayUpdated':'Bleib Informiert','footer.newsText':'Frühe Radar-Daten & Beta-Funktionen. Kein Spam.','footer.emailLabel':'E-Mail','footer.subscribeBtn':'Abonnieren','footer.privacyNoteHtml':'Mit der Anmeldung stimmst du unserer <a href="#privacy" data-i18n="footer.privacyPolicyLink">Datenschutzerklärung</a> zu.','footer.privacyPolicyLink':'Datenschutzerklärung','footer.privacyPolicyShort':'Datenschutz','footer.termsShort':'Nutzung','footer.cookies':'Cookies','footer.contact':'Kontakt','footer.copyrightHtml':'&copy; <span id="year"></span> RadarGuard Alerts: Speed camera. Alle Rechte vorbehalten.'}}
+        if(isAndroid){
+            window.location.href=android
+        }else if(isIOS){
+            window.location.href=apple
+        }else{
+            document.querySelector('#download')?.scrollIntoView({behavior:'smooth',block:'start'})
+        }
+    }
+    document.querySelectorAll('[data-action="smart-download"]').forEach(btn=>{
+        btn.addEventListener('click',handleSmartDownload)
+        btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){handleSmartDownload(e)}})
+    })
+})()
+/* ================= i18n (Brand name not translated) ================= */
+;(function(){
+    const DICT={
+        en:{
+            'meta.title':'RadarGuard Alerts',
+            'header.homeAria':'RadarGuard Alerts: Speed camera home',
+            'brand.logoAlt':'RadarGuard logo',
+            'lang.select':'Select language',
+            'cta.download':'Download',
+            'cta.downloadAria':'Download',
+            'cta.features':'Features',
+            'product.type':'Speed camera',
+            'hero.headingHtml':'Instant <span class="grad">Speed Camera</span> Awareness',
+            'hero.lead':'Real‑time speed camera & hazard intelligence — fast, precise, privacy‑first. Adaptive radar visuals help you anticipate instead of react.',
+            'flags.lowLatency':'Ultra‑low latency',
+            'flags.privacy':'Privacy‑first',
+            'flags.filtering':'Adaptive filtering',
+            'features.sectionTitle':'Powerful Features',
+            'features.sectionSub':'Core capabilities for real-time awareness',
+            'features.speed.title':'Speed Detection',
+            'features.speed.desc':'Instant alerts for nearby speed cameras and road limits.',
+            'features.gps.title':'Precision GPS',
+            'features.gps.desc':'Ultra-accurate positioning for better awareness.',
+            'features.alerts.title':'Smart Alerts',
+            'features.alerts.desc':'Intelligent notifications adapted to your driving route.',
+            'features.community.title':'Community Reports',
+            'features.community.desc':'Stay informed with live updates from other users.',
+            'features.route.title':'Route Prediction',
+            'features.route.desc':'Optimized navigation and hazard detection system.',
+            'features.validation.title':'Crowd Validation',
+            'features.validation.desc':'Camera updates weighted by recent confirmations to reduce stale alerts.',
+            'download.titleHtml':'RadarGuard Alerts: <span class="dl-accent">Speed camera</span>',
+            'download.tagline':'Real‑time speed camera & hazard intelligence that keeps you aware before you arrive — optimized for accuracy, battery efficiency and privacy.',
+            'download.point1':'Ultra‑low latency live alerts.',
+            'download.point2':'Privacy‑first: no selling of trip data.',
+            'download.point3':'Crowd‑validated camera network.',
+            'download.betaHtml':'Want early feature previews? <a href="#beta" class="dl-link" data-i18n="download.betaLink">Join the beta</a>.',
+            'download.betaLink':'Join the beta',
+            'download.appStoreAria':'Download RadarGuard Alerts on the App Store',
+            'download.playStoreAria':'Download RadarGuard Alerts on Google Play',
+            'download.devicePreviewAria':'App interface preview',
+            'download.deviceImageAlt':'RadarGuard Alerts live interface',
+            'store.getItOn':'Get it on',
+            'store.appStore':'App Store',
+            'store.playStore':'Google Play',
+            'footer.tagline':'Real‑time speed camera & hazard awareness. Drive informed.',
+            'footer.productHead':'Product',
+            'footer.download':'Download',
+            'footer.betaAccess':'Beta Access',
+            'footer.pricingSoon':'Pricing (Soon)',
+            'footer.faqPlaceholder':'FAQ (Placeholder)',
+            'footer.resourcesHead':'Resources',
+            'footer.support':'Support',
+            'footer.blogPlaceholder':'Blog (Placeholder)',
+            'footer.docsPlanned':'Docs (Planned)',
+            'footer.changelog':'Changelog',
+            'footer.community':'Community',
+            'footer.companyHead':'Company',
+            'footer.aboutUs':'About Us',
+            'footer.privacyPolicy':'Privacy Policy',
+            'footer.termsOfUse':'Terms of Use',
+            'footer.careersFuture':'Careers (Future)',
+            'footer.legalCenter':'Legal Center',
+            'footer.stayUpdated':'Stay Updated',
+            'footer.newsText':'Get early radar data drops & beta feature access. No spam.',
+            'footer.emailLabel':'Email',
+            'footer.subscribeBtn':'Subscribe',
+            'footer.privacyNoteHtml':'By subscribing you agree to our <a href="#privacy" data-i18n="footer.privacyPolicyLink">privacy policy</a>.',
+            'footer.privacyPolicyLink':'privacy policy',
+            'footer.privacyPolicyShort':'Privacy',
+            'footer.termsShort':'Terms',
+            'footer.cookies':'Cookies',
+            'footer.contact':'Contact',
+            'footer.copyrightHtml':'&copy; <span id="year"></span> RadarGuard Alerts: Speed camera. All rights reserved.'
+        },
+        tr:{
+            'meta.title':'RadarGuard Alerts',
+            'header.homeAria':'RadarGuard Alerts: Hız kamerası ana sayfa',
+            'brand.logoAlt':'RadarGuard logo',
+            'lang.select':'Dil seç',
+            'cta.download':'İndir',
+            'cta.downloadAria':'İndir',
+            'cta.features':'Özellikler',
+            'product.type':'Speed camera',
+            'hero.headingHtml':'Anında <span class="grad">Hız Kamerası</span> Farkındalığı',
+            'hero.lead':'Gerçek zamanlı hız kamerası & tehlike zekâsı — hızlı, hassas, gizlilik öncelikli. Uyarlanabilir radar görselleri tepki yerine öngörü sağlar.',
+            'flags.lowLatency':'Çok düşük gecikme',
+            'flags.privacy':'Gizlilik öncelikli',
+            'flags.filtering':'Uyarlanabilir filtreleme',
+            'features.sectionTitle':'Güçlü Özellikler',
+            'features.sectionSub':'Gerçek zamanlı farkındalık yetenekleri',
+            'features.speed.title':'Hız Tespiti',
+            'features.speed.desc':'Yakındaki hız kameraları ve sınırlar için anlık uyarılar.',
+            'features.gps.title':'Hassas GPS',
+            'features.gps.desc':'Daha iyi farkındalık için yüksek doğruluk.',
+            'features.alerts.title':'Akıllı Uyarılar',
+            'features.alerts.desc':'Sürüş rotana göre uyarlanmış bildirimler.',
+            'features.community.title':'Topluluk Raporları',
+            'features.community.desc':'Diğer kullanıcılardan canlı güncellemeler.',
+            'features.route.title':'Rota Tahmini',
+            'features.route.desc':'Optimize navigasyon ve tehlike tespiti.',
+            'features.validation.title':'Topluluk Doğrulama',
+            'features.validation.desc':'Ağırlıklı teyitlerle eski uyarılar azalır.',
+            'download.titleHtml':'RadarGuard Alerts: <span class="dl-accent">Speed Camera</span>',
+            'download.tagline':'Doğruluk, pil verimliliği ve gizlilik için optimize gerçek zamanlı hız kamerası & tehlike zekâsı.',
+            'download.point1':'Çok düşük gecikmeli canlı uyarılar.',
+            'download.point2':'Gizlilik öncelikli: veri satışı yok.',
+            'download.point3':'Topluluk doğrulamalı kamera ağı.',
+            'download.betaHtml':'Erken özellik ister misin? <a href="#beta" class="dl-link" data-i18n="download.betaLink">Beta\'ya katıl</a>.',
+            'download.betaLink':'Beta\'ya katıl',
+            'download.appStoreAria':'RadarGuard Alerts App Store indirme',
+            'download.playStoreAria':'RadarGuard Alerts Google Play indirme',
+            'download.devicePreviewAria':'Uygulama arayüz önizleme',
+            'download.deviceImageAlt':'RadarGuard Alerts canlı arayüz',
+            'store.getItOn':'İndir',
+            'store.appStore':'App Store',
+            'store.playStore':'Google Play',
+            'footer.tagline':'Gerçek zamanlı hız kamerası & tehlike farkındalığı. Bilinçli sür.',
+            'footer.productHead':'Ürün',
+            'footer.download':'İndir',
+            'footer.betaAccess':'Beta Erişimi',
+            'footer.pricingSoon':'Fiyatlandırma (Yakında)',
+            'footer.faqPlaceholder':'SSS (Yer Tutucu)',
+            'footer.resourcesHead':'Kaynaklar',
+            'footer.support':'Destek',
+            'footer.blogPlaceholder':'Blog (Yer Tutucu)',
+            'footer.docsPlanned':'Dokümanlar (Planlı)',
+            'footer.changelog':'Değişiklik Günlüğü',
+            'footer.community':'Topluluk',
+            'footer.companyHead':'Şirket',
+            'footer.aboutUs':'Hakkımızda',
+            'footer.privacyPolicy':'Gizlilik Politikası',
+            'footer.termsOfUse':'Kullanım Şartları',
+            'footer.careersFuture':'Kariyer (Gelecek)',
+            'footer.legalCenter':'Hukuk Merkezi',
+            'footer.stayUpdated':'Güncel Kal',
+            'footer.newsText':'Erken radar verisi & beta erişimi. Spam yok.',
+            'footer.emailLabel':'E‑posta',
+            'footer.subscribeBtn':'Abone Ol',
+            'footer.privacyNoteHtml':'Abone olarak <a href="#privacy" data-i18n="footer.privacyPolicyLink">gizlilik politikasını</a> kabul edersin.',
+            'footer.privacyPolicyLink':'gizlilik politikasını',
+            'footer.privacyPolicyShort':'Gizlilik',
+            'footer.termsShort':'Şartlar',
+            'footer.cookies':'Çerezler',
+            'footer.contact':'İletişim',
+            'footer.copyrightHtml':'&copy; <span id="year"></span> RadarGuard Alerts: Speed camera. Tüm hakları saklıdır.'
+        },
+        de:{
+            'meta.title':'RadarGuard Alerts',
+            'header.homeAria':'RadarGuard Alerts: Blitzer Startseite',
+            'brand.logoAlt':'RadarGuard Logo',
+            'lang.select':'Sprache wählen',
+            'cta.download':'Herunterladen',
+            'cta.downloadAria':'Herunterladen',
+            'cta.features':'Funktionen',
+            'product.type':'Speed camera',
+            'hero.headingHtml':'Sofortiges <span class="grad">Blitzer</span> Bewusstsein',
+            'hero.lead':'Echtzeit Blitzer & Gefahren‑Intelligenz – schnell, präzise, datenschutzorientiert. Adaptive Radarvisualisierung hilft vorauszuplanen.',
+            'flags.lowLatency':'Sehr geringe Latenz',
+            'flags.privacy':'Datenschutz zuerst',
+            'flags.filtering':'Adaptive Filterung',
+            'features.sectionTitle':'Leistungsstarke Funktionen',
+            'features.sectionSub':'Kernfunktionen für Echtzeit-Wahrnehmung',
+            'features.speed.title':'Geschwindigkeits-Erkennung',
+            'features.speed.desc':'Sofortwarnungen für nahe Blitzer & Limits.',
+            'features.gps.title':'Präzises GPS',
+            'features.gps.desc':'Hohe Genauigkeit für bessere Wahrnehmung.',
+            'features.alerts.title':'Intelligente Warnungen',
+            'features.alerts.desc':'Kontextbezogene Hinweise entlang deiner Route.',
+            'features.community.title':'Community Meldungen',
+            'features.community.desc':'Aktuelle Updates von anderen Fahrern.',
+            'features.route.title':'Routenprognose',
+            'features.route.desc':'Optimierte Navigation & Gefahrenerkennung.',
+            'features.validation.title':'Crowd Validierung',
+            'features.validation.desc':'Gewichtete Bestätigungen reduzieren veraltete Meldungen.',
+            'download.titleHtml':'RadarGuard Alerts: <span class="dl-accent">Speed Camera</span>',
+            'download.tagline':'Echtzeit Blitzer & Gefahren‑Intelligenz für Genauigkeit, Akkuschonung & Datenschutz.',
+            'download.point1':'Sehr geringe Latenz bei Live-Warnungen.',
+            'download.point2':'Datenschutz zuerst: keine Weitergabe von Fahrtdaten.',
+            'download.point3':'Crowd‑validiertes Kameranetzwerk.',
+            'download.betaHtml':'Frühe Funktionen testen? <a href="#beta" class="dl-link" data-i18n="download.betaLink">Zur Beta</a>.',
+            'download.betaLink':'Zur Beta',
+            'download.appStoreAria':'RadarGuard Alerts im App Store herunterladen',
+            'download.playStoreAria':'RadarGuard Alerts bei Google Play herunterladen',
+            'download.devicePreviewAria':'App Interface Vorschau',
+            'download.deviceImageAlt':'RadarGuard Alerts Live Interface',
+            'store.getItOn':'Hol es im',
+            'store.appStore':'App Store',
+            'store.playStore':'Google Play',
+            'footer.tagline':'Echtzeit Blitzer- & Gefahrenbewusstsein. Fahre informiert.',
+            'footer.productHead':'Produkt',
+            'footer.download':'Herunterladen',
+            'footer.betaAccess':'Beta Zugang',
+            'footer.pricingSoon':'Preise (Bald)',
+            'footer.faqPlaceholder':'FAQ (Platzhalter)',
+            'footer.resourcesHead':'Ressourcen',
+            'footer.support':'Unterstützung',
+            'footer.blogPlaceholder':'Blog (Platzhalter)',
+            'footer.docsPlanned':'Doku (Geplant)',
+            'footer.changelog':'Changelog',
+            'footer.community':'Community',
+            'footer.companyHead':'Unternehmen',
+            'footer.aboutUs':'Über Uns',
+            'footer.privacyPolicy':'Datenschutzerklärung',
+            'footer.termsOfUse':'Nutzungsbedingungen',
+            'footer.careersFuture':'Karriere (Zukünftig)',
+            'footer.legalCenter':'Rechtszentrum',
+            'footer.stayUpdated':'Bleib Informiert',
+            'footer.newsText':'Frühe Radar-Daten & Beta-Funktionen. Kein Spam.',
+            'footer.emailLabel':'E-Mail',
+            'footer.subscribeBtn':'Abonnieren',
+            'footer.privacyNoteHtml':'Mit der Anmeldung stimmst du unserer <a href="#privacy" data-i18n="footer.privacyPolicyLink">Datenschutzerklärung</a> zu.',
+            'footer.privacyPolicyLink':'Datenschutzerklärung',
+            'footer.privacyPolicyShort':'Datenschutz',
+            'footer.termsShort':'Nutzung',
+            'footer.cookies':'Cookies',
+            'footer.contact':'Kontakt',
+            'footer.copyrightHtml':'&copy; <span id="year"></span> RadarGuard Alerts: Speed camera. Alle Rechte vorbehalten.'
+        }
+    }
+
     const LS_KEY='rg_lang'
     function $(s,c=document){return c.querySelector(s)}
-    function $all(s,c=document){return[...c.querySelectorAll(s)]}
-    function detectLang(){const qp=new URLSearchParams(location.search).get('lang')
-        if(qp&&DICT[qp])return qp
+    function $all(s,c=document){return [...c.querySelectorAll(s)]}
+
+    function detectLang(){
+        const qp=new URLSearchParams(location.search).get('lang')
+        if(qp && DICT[qp]) return qp
         const stored=localStorage.getItem(LS_KEY)
-        if(stored&&DICT[stored])return stored
+        if(stored && DICT[stored]) return stored
         const nav=(navigator.language||'en').slice(0,2).toLowerCase()
-        return DICT[nav]?nav:'en'}
-    function applyAttrTranslations(el,langDict,base){const spec=el.getAttribute('data-i18n-attr')
-        if(!spec)return
-        spec.split(';').forEach(pair=>{if(!pair.trim())return
-            const[attr,key]=pair.split(':')
+        return DICT[nav]?nav:'en'
+    }
+
+    function applyAttrTranslations(el,langDict,base){
+        const spec=el.getAttribute('data-i18n-attr')
+        if(!spec) return
+        spec.split(';').forEach(pair=>{
+            if(!pair.trim())return
+            const [attr,key]=pair.split(':')
             const k=key.trim()
             const val=langDict[k]??base[k]
-            if(val!=null)el.setAttribute(attr.trim(),val)})}
-    function translate(lang){const dict=DICT[lang]
+            if(val!=null) el.setAttribute(attr.trim(),val)
+        })
+    }
+
+    function translate(lang){
+        const dict=DICT[lang]
         const base=DICT.en
         document.documentElement.setAttribute('data-app-lang',lang)
         const titleKey='meta.title'
-        document.title=dict[titleKey]||base[titleKey]||'RadarGuard Alerts'
-        $all('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html')
+        document.title = dict[titleKey]||base[titleKey]||'RadarGuard Alerts'
+        $all('[data-i18n-html]').forEach(el=>{
+            const k=el.getAttribute('data-i18n-html')
             const v=dict[k]??base[k]
-            if(v!=null)el.innerHTML=v})
-        $all('[data-i18n]').forEach(el=>{if(el.hasAttribute('data-i18n-html'))return
+            if(v!=null) el.innerHTML=v
+        })
+        $all('[data-i18n]').forEach(el=>{
+            if(el.hasAttribute('data-i18n-html')) return
             const k=el.getAttribute('data-i18n')
             const v=dict[k]??base[k]
-            if(v!=null)el.textContent=v})
+            if(v!=null) el.textContent=v
+        })
         $all('[data-i18n-attr]').forEach(el=>applyAttrTranslations(el,dict,base))
-        $all('[data-i18n]').forEach(el=>{if(el.hasAttribute('data-i18n-html'))return
+        $all('[data-i18n]').forEach(el=>{
+            if(el.hasAttribute('data-i18n-html')) return
             const k=el.getAttribute('data-i18n')
             const v=dict[k]??base[k]
-            if(v!=null)el.textContent=v})
-        const y=$('#year');if(y)y.textContent=new Date().getFullYear()
-        $all('.lang-btn,.lang-opt').forEach(btn=>{const active=btn.dataset.lang===lang
+            if(v!=null) el.textContent=v
+        })
+        const y=$('#year'); if(y) y.textContent=new Date().getFullYear()
+        $all('.lang-btn,.lang-opt').forEach(btn=>{
+            const active=btn.dataset.lang===lang
             btn.classList.toggle('is-active',active)
-            if(btn.classList.contains('lang-btn'))btn.setAttribute('aria-pressed',active?'true':'false')})
+            if(btn.classList.contains('lang-btn')) btn.setAttribute('aria-pressed',active?'true':'false')
+        })
         const toggle=$('.lang-toggle')
-        if(toggle)toggle.textContent=lang.toUpperCase()+' ▾'
-        localStorage.setItem(LS_KEY,lang)}
-    function initLang(){translate(detectLang())
-        document.addEventListener('click',e=>{const trg=e.target.closest('[data-lang]')
-            if(trg){const l=trg.dataset.lang
-                if(DICT[l])translate(l)}},!0)
-        window.setAppLang=l=>{if(DICT[l])translate(l)}}
-    function initLangDropdown(){const toggle=$('.lang-toggle')
+        if(toggle) toggle.textContent=lang.toUpperCase()+' ▾'
+        localStorage.setItem(LS_KEY,lang)
+    }
+
+    function initLang(){
+        translate(detectLang())
+        document.addEventListener('click',e=>{
+            const trg=e.target.closest('[data-lang]')
+            if(trg){
+                const l=trg.dataset.lang
+                if(DICT[l]) translate(l)
+            }
+        },true)
+        window.setAppLang=l=>{ if(DICT[l]) translate(l) }
+    }
+
+    function initLangDropdown(){
+        const toggle=$('.lang-toggle')
         const menu=$('.lang-menu')
-        if(!toggle||!menu)return
-        toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open')
-            toggle.setAttribute('aria-expanded',open?'true':'false')})
-        document.addEventListener('click',e=>{if(!menu.classList.contains('open'))return
-            if(!menu.contains(e.target)&&e.target!==toggle){menu.classList.remove('open')
-                toggle.setAttribute('aria-expanded','false')}})
-        document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.contains('open')){menu.classList.remove('open')
-            toggle.setAttribute('aria-expanded','false')
-            toggle.focus()}})}
-    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>{initLang();initLangDropdown()})}else{initLang();initLangDropdown()}})();console.log('moon loving never ended✨')
+        if(!toggle||!menu) return
+        toggle.addEventListener('click',()=>{
+            const open=menu.classList.toggle('open')
+            toggle.setAttribute('aria-expanded',open?'true':'false')
+        })
+        document.addEventListener('click',e=>{
+            if(!menu.classList.contains('open')) return
+            if(!menu.contains(e.target) && e.target!==toggle){
+                menu.classList.remove('open')
+                toggle.setAttribute('aria-expanded','false')
+            }
+        })
+        document.addEventListener('keydown',e=>{
+            if(e.key==='Escape'&&menu.classList.contains('open')){
+                menu.classList.remove('open')
+                toggle.setAttribute('aria-expanded','false')
+                toggle.focus()
+            }
+        })
+    }
+
+    if(document.readyState==='loading'){
+        document.addEventListener('DOMContentLoaded',()=>{initLang();initLangDropdown();})
+    }else{
+        initLang();initLangDropdown()
+    }
+})();
+
+console.log('moon loving never ended✨')

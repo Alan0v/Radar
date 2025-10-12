@@ -1,1 +1,284 @@
-<!DOCTYPE html><html lang="en" data-app-lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title data-i18n="meta.title">RadarGuard Alerts</title><link rel="icon" href="assets/img/logo.png"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><div id="top"></div><header id="siteHeader" class="rg-header" role="banner" aria-label="Primary" data-i18n-attr="aria-label:header.homeAria"><div class="rg-header-inner"><a href="#top" class="rg-brand" aria-label="RadarGuard Alerts: Speed camera home" data-i18n-attr="aria-label:header.homeAria"><span class="rg-logo"><img src="assets/img/logo.png" alt="RadarGuard logo" data-i18n-attr="alt:brand.logoAlt"></span></a><div class="rg-actions"><button class="rg-download-btn" type="button" data-action="smart-download" data-i18n="cta.download" aria-label="Download" data-i18n-attr="aria-label:cta.downloadAria"><span class="btn-glow"></span> Download </button><div class="rg-lang-switch" role="group" aria-label="Select language" data-i18n-attr="aria-label:lang.select"><button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button><button type="button" class="lang-btn" data-lang="tr" aria-pressed="false">TR</button><button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button></div><div class="rg-lang-dropdown"><button class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu">EN ▾</button><div class="lang-menu" id="langMenu" role="menu"><button type="button" class="lang-opt is-active" data-lang="en" role="menuitem">English</button><button type="button" class="lang-opt" data-lang="tr" role="menuitem">Türkçe</button><button type="button" class="lang-opt" data-lang="de" role="menuitem">Deutsch</button></div></div></div></div></header><section id="hero" class="hero hero-v2" aria-labelledby="heroTitle"><canvas id="radarCanvas" aria-hidden="true"></canvas><div class="hero-body"><div class="hero-text"><p class="hero-product-name"><span class="hp-main">RadarGuard <span class="accent">Alerts</span></span><span class="hp-sub">: <span data-i18n="product.type">Speed camera</span></span></p><h1 id="heroTitle" class="hero-heading" data-i18n-html="hero.headingHtml"> Instant <span class="grad">Speed Camera</span> Awareness </h1><p class="hero-lead" data-i18n="hero.lead"> Real‑time speed camera & hazard intelligence — fast, precise, privacy‑first. Adaptive radar visuals help you anticipate instead of react. </p><div class="hero-actions"><button class="hero-btn-primary" type="button" data-action="smart-download" aria-label="Download" data-i18n-attr="aria-label:cta.downloadAria" data-i18n="cta.download">Download</button><a href="#features" class="hero-btn-secondary" data-i18n="cta.features">Features</a></div><ul class="hero-flags" role="list"><li><i class="fa-solid fa-bolt"></i><span data-i18n="flags.lowLatency">Ultra‑low latency</span></li><li><i class="fa-solid fa-shield-halved"></i><span data-i18n="flags.privacy">Privacy‑first</span></li><li class="flag-optional"><i class="fa-solid fa-filter"></i><span data-i18n="flags.filtering">Adaptive filtering</span></li></ul></div></div></section><section class="features" id="features"><div class="features-head"><h2 class="features-title" data-i18n="features.sectionTitle"> Powerful Features <span class="features-accent-bar"></span></h2><p class="features-sub" data-i18n="features.sectionSub">Core capabilities for real-time awareness</p></div><div class="feature-cards"><div class="feature-card-wrapper reveal"><div class="feature-card" tabindex="0"><div class="icon-wrap"><i class="fa-solid fa-gauge-high"></i></div><div class="card-body"><h5 data-i18n="features.speed.title">Speed Detection</h5><p data-i18n="features.speed.desc">Instant alerts for nearby speed cameras and road limits.</p></div></div></div><div class="feature-card-wrapper reveal"><div class="feature-card" tabindex="0"><div class="icon-wrap"><i class="fa-solid fa-location-crosshairs"></i></div><div class="card-body"><h5 data-i18n="features.gps.title">Precision GPS</h5><p data-i18n="features.gps.desc">Ultra-accurate positioning for better awareness.</p></div></div></div><div class="feature-card-wrapper reveal"><div class="feature-card" tabindex="0"><div class="icon-wrap"><i class="fa-solid fa-bell"></i></div><div class="card-body"><h5 data-i18n="features.alerts.title">Smart Alerts</h5><p data-i18n="features.alerts.desc">Intelligent notifications adapted to your driving route.</p></div></div></div><div class="feature-card-wrapper reveal"><div class="feature-card" tabindex="0"><div class="icon-wrap"><i class="fa-solid fa-shield-halved"></i></div><div class="card-body"><h5 data-i18n="features.community.title">Community Reports</h5><p data-i18n="features.community.desc">Stay informed with live updates from other users.</p></div></div></div><div class="feature-card-wrapper reveal"><div class="feature-card" tabindex="0"><div class="icon-wrap"><i class="fa-solid fa-road"></i></div><div class="card-body"><h5 data-i18n="features.route.title">Route Prediction</h5><p data-i18n="features.route.desc">Optimized navigation and hazard detection system.</p></div></div></div><div class="feature-card-wrapper reveal"><div class="feature-card" tabindex="0"><div class="icon-wrap"><i class="fa-solid fa-users"></i></div><div class="card-body"><h5 data-i18n="features.validation.title">Crowd Validation</h5><p data-i18n="features.validation.desc">Camera updates weighted by recent confirmations to reduce stale alerts.</p></div></div></div></div></section><section id="download" class="download-section"><div class="dl-glow-bg" aria-hidden="true"></div><canvas class="dl-particles" aria-hidden="true"></canvas><div class="dl-container"><div class="dl-col dl-content reveal fade-left"><h2 class="dl-title" data-i18n-html="download.titleHtml"> RadarGuard Alerts: <span class="dl-accent">Speed camera</span></h2><p class="dl-tagline" data-i18n="download.tagline"> Real‑time speed camera & hazard intelligence that keeps you aware before you arrive — optimized for accuracy, battery efficiency and privacy. </p><div class="dl-stores"><a href="https://apps.apple.com/us/app/radarguard-alerts-speed-camera/id6751195451?platform=iphone" class="store-btn store-btn--apple pulse-badge" target="_blank" rel="noopener" aria-label="Download RadarGuard Alerts on the App Store" data-i18n-attr="aria-label:download.appStoreAria"><span class="store-icon"><i class="fab fa-apple"></i></span><span class="store-text"><span class="overline" data-i18n="store.getItOn">Get it on</span><span class="mainline" data-i18n="store.appStore">App Store</span></span></a><a href="https://play.google.com/store/apps/details?id=com.SpeedCamera.RadarAlerts" class="store-btn store-btn--google pulse-badge" target="_blank" rel="noopener" aria-label="Download RadarGuard Alerts on Google Play" data-i18n-attr="aria-label:download.playStoreAria"><span class="store-icon"><i class="fab fa-google-play"></i></span><span class="store-text"><span class="overline" data-i18n="store.getItOn">Get it on</span><span class="mainline" data-i18n="store.playStore">Google Play</span></span></a></div><ul class="dl-points"><li><i class="fa-solid fa-bolt"></i><span data-i18n="download.point1">Ultra‑low latency live alerts.</span></li><li><i class="fa-solid fa-shield-halved"></i><span data-i18n="download.point2">Privacy‑first: no selling of trip data.</span></li><li><i class="fa-solid fa-users"></i><span data-i18n="download.point3">Crowd‑validated camera network.</span></li></ul><p class="dl-micro" data-beta-block data-i18n-html="download.betaHtml"> Want early feature previews? <a href="#beta" class="dl-link" data-i18n="download.betaLink">Join the beta</a>. </p></div><div class="dl-col dl-device-wrap reveal rise-in"><figure class="device-stage" id="deviceStage" aria-label="App interface preview" data-i18n-attr="aria-label:download.devicePreviewAria"><div class="device-shell"><div class="device-glow" aria-hidden="true"></div><img src="assets/img/app-mockup.png" alt="RadarGuard Alerts live interface" class="device-screen" loading="lazy" onerror="this.classList.add('fallback');" data-i18n-attr="alt:download.deviceImageAlt"><div class="device-reflect" aria-hidden="true"></div></div></figure></div></div></section><footer class="site-footer" id="footer"><div class="footer-glow" aria-hidden="true"></div><div class="footer-inner"><div class="footer-col footer-brand"><div class="footer-logo"><span class="logo-accent">RadarGuard</span> Alerts</div><p class="footer-tagline" data-i18n="footer.tagline">Real‑time speed camera & hazard awareness. Drive informed.</p><div class="footer-social"><a href="#" aria-label="Twitter / X" class="soc-link" ><i class="fa-brands fa-x-twitter"></i></a><a href="#" aria-label="Instagram" class="soc-link"><i class="fa-brands fa-instagram"></i></a><a href="#" aria-label="TikTok" class="soc-link"><i class="fa-brands fa-tiktok"></i></a><a href="#" aria-label="YouTube" class="soc-link"><i class="fa-brands fa-youtube"></i></a><a href="#" aria-label="Discord" class="soc-link"><i class="fa-brands fa-discord"></i></a></div></div><div class="footer-col footer-links"><h6 class="f-head" data-i18n="footer.productHead">Product</h6><ul><li><a href="#features" data-i18n="cta.features">Features</a></li><li><a href="#download" data-i18n="footer.download">Download</a></li><li><a href="#beta" data-disabled="true" data-i18n="footer.betaAccess">Beta Access</a></li><li><a href="#pricing" data-disabled="true" data-i18n="footer.pricingSoon">Pricing (Soon)</a></li><li><a href="#faq" data-disabled="true" data-i18n="footer.faqPlaceholder">FAQ (Placeholder)</a></li></ul></div><div class="footer-col footer-links" data-disabled="false"><h6 class="f-head" data-i18n="footer.resourcesHead">Resources</h6><ul><li><a href="#support" data-i18n="footer.support">Support</a></li><li data-disabled="true"><a href="#blog" data-i18n="footer.blogPlaceholder">Blog (Placeholder)</a></li><li data-disabled="true"><a href="#docs" data-i18n="footer.docsPlanned">Docs (Planned)</a></li><li data-disabled="true"><a href="#changelog" data-i18n="footer.changelog">Changelog</a></li><li data-disabled="true"><a href="#community" data-i18n="footer.community">Community</a></li></ul></div><div class="footer-col footer-links"><h6 class="f-head" data-i18n="footer.companyHead">Company</h6><ul><li><a href="#about" data-i18n="footer.aboutUs">About Us</a></li><li><a href="#privacy" data-i18n="footer.privacyPolicy">Privacy Policy</a></li><li><a href="#terms" data-i18n="footer.termsOfUse">Terms of Use</a></li><li><a href="#jobs" data-disabled="true" data-i18n="footer.careersFuture">Careers (Future)</a></li><li><a href="#legal" data-disabled="true" data-i18n="footer.legalCenter">Legal Center</a></li></ul></div><div class="footer-col footer-news"><h6 class="f-head" data-i18n="footer.stayUpdated">Stay Updated</h6><p class="news-text" data-i18n="footer.newsText">Get early radar data drops & beta feature access. No spam.</p><form class="news-form" action="#" method="post"><label class="sr-only" for="newsletter-email" data-i18n="footer.emailLabel">Email</label><input type="email" id="newsletter-email" name="email" placeholder="Heyv@example.com" required><button type="submit" aria-label="Subscribe to updates" data-i18n="footer.subscribeBtn">Subscribe</button></form><small class="privacy-hint" data-i18n-html="footer.privacyNoteHtml"> By subscribing you agree to our <a href="#privacy" data-i18n="footer.privacyPolicyLink">privacy policy</a>. </small></div></div><div class="footer-sep" aria-hidden="true"></div><div class="footer-bottom"><p class="copy" data-i18n-html="footer.copyrightHtml"> &copy; <span id="year"></span> RadarGuard Alerts: Speed camera. All rights reserved. </p><ul class="legal-inline"><li><a href="#privacy" data-i18n="footer.privacyPolicyShort">Privacy</a></li><li><a href="#terms" data-i18n="footer.termsShort">Terms</a></li><li><a href="#cookies" data-i18n="footer.cookies">Cookies</a></li><li><a href="#contact" data-i18n="footer.contact">Contact</a></li></ul></div></footer><script src="index.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en" data-app-lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title data-i18n="meta.title">RadarGuard Alerts</title>
+    <link rel="icon" href="assets/img/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "tp28gquj4n");
+    </script>
+
+
+
+</head>
+<body>
+<div id="top"></div>
+
+<header id="siteHeader" class="rg-header" role="banner" aria-label="Primary" data-i18n-attr="aria-label:header.homeAria">
+    <div class="rg-header-inner">
+        <a href="#top" class="rg-brand" aria-label="RadarGuard Alerts: Speed camera home" data-i18n-attr="aria-label:header.homeAria">
+            <span class="rg-logo">
+                <img src="assets/img/logo.png" alt="RadarGuard logo" data-i18n-attr="alt:brand.logoAlt">
+            </span>
+        </a>
+        <div class="rg-actions">
+            <button class="rg-download-btn" type="button" data-action="smart-download" data-i18n="cta.download" aria-label="Download" data-i18n-attr="aria-label:cta.downloadAria">
+                <span class="btn-glow"></span>
+                Download
+            </button>
+            <div class="rg-lang-switch" role="group" aria-label="Select language" data-i18n-attr="aria-label:lang.select">
+                <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="tr" aria-pressed="false">TR</button>
+                <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+            </div>
+            <div class="rg-lang-dropdown">
+                <button class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu">EN ▾</button>
+                <div class="lang-menu" id="langMenu" role="menu">
+                    <button type="button" class="lang-opt is-active" data-lang="en" role="menuitem">English</button>
+                    <button type="button" class="lang-opt" data-lang="tr" role="menuitem">Türkçe</button>
+                    <button type="button" class="lang-opt" data-lang="de" role="menuitem">Deutsch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="hero" class="hero hero-v2" aria-labelledby="heroTitle">
+    <canvas id="radarCanvas" aria-hidden="true"></canvas>
+    <div class="hero-body">
+        <div class="hero-text">
+            <p class="hero-product-name">
+                <span class="hp-main">RadarGuard <span class="accent">Alerts</span></span>
+                <span class="hp-sub">: <span data-i18n="product.type">Speed camera</span></span>
+            </p>
+            <h1 id="heroTitle" class="hero-heading" data-i18n-html="hero.headingHtml">
+                Instant <span class="grad">Speed Camera</span> Awareness
+            </h1>
+            <p class="hero-lead" data-i18n="hero.lead">
+                Real‑time speed camera & hazard intelligence — fast, precise, privacy‑first. Adaptive radar visuals help you anticipate instead of react.
+            </p>
+            <div class="hero-actions">
+                <button class="hero-btn-primary" type="button" data-action="smart-download" aria-label="Download" data-i18n-attr="aria-label:cta.downloadAria" data-i18n="cta.download">Download</button>
+                <a href="#features" class="hero-btn-secondary" data-i18n="cta.features">Features</a>
+            </div>
+            <ul class="hero-flags" role="list">
+                <li><i class="fa-solid fa-bolt"></i> <span data-i18n="flags.lowLatency">Ultra‑low latency</span></li>
+                <li><i class="fa-solid fa-shield-halved"></i> <span data-i18n="flags.privacy">Privacy‑first</span></li>
+                <li class="flag-optional"><i class="fa-solid fa-filter"></i> <span data-i18n="flags.filtering">Adaptive filtering</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <div class="features-head">
+        <h2 class="features-title" data-i18n="features.sectionTitle">
+            Powerful Features
+            <span class="features-accent-bar"></span>
+        </h2>
+        <p class="features-sub" data-i18n="features.sectionSub">Core capabilities for real-time awareness</p>
+    </div>
+    <div class="feature-cards">
+        <div class="feature-card-wrapper reveal">
+            <div class="feature-card" tabindex="0">
+                <div class="icon-wrap"><i class="fa-solid fa-gauge-high"></i></div>
+                <div class="card-body">
+                    <h5 data-i18n="features.speed.title">Speed Detection</h5>
+                    <p data-i18n="features.speed.desc">Instant alerts for nearby speed cameras and road limits.</p>
+                </div>
+            </div>
+        </div>
+        <div class="feature-card-wrapper reveal">
+            <div class="feature-card" tabindex="0">
+                <div class="icon-wrap"><i class="fa-solid fa-location-crosshairs"></i></div>
+                <div class="card-body">
+                    <h5 data-i18n="features.gps.title">Precision GPS</h5>
+                    <p data-i18n="features.gps.desc">Ultra-accurate positioning for better awareness.</p>
+                </div>
+            </div>
+        </div>
+        <div class="feature-card-wrapper reveal">
+            <div class="feature-card" tabindex="0">
+                <div class="icon-wrap"><i class="fa-solid fa-bell"></i></div>
+                <div class="card-body">
+                    <h5 data-i18n="features.alerts.title">Smart Alerts</h5>
+                    <p data-i18n="features.alerts.desc">Intelligent notifications adapted to your driving route.</p>
+                </div>
+            </div>
+        </div>
+        <div class="feature-card-wrapper reveal">
+            <div class="feature-card" tabindex="0">
+                <div class="icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="card-body">
+                    <h5 data-i18n="features.community.title">Community Reports</h5>
+                    <p data-i18n="features.community.desc">Stay informed with live updates from other users.</p>
+                </div>
+            </div>
+        </div>
+        <div class="feature-card-wrapper reveal">
+            <div class="feature-card" tabindex="0">
+                <div class="icon-wrap"><i class="fa-solid fa-road"></i></div>
+                <div class="card-body">
+                    <h5 data-i18n="features.route.title">Route Prediction</h5>
+                    <p data-i18n="features.route.desc">Optimized navigation and hazard detection system.</p>
+                </div>
+            </div>
+        </div>
+        <div class="feature-card-wrapper reveal">
+            <div class="feature-card" tabindex="0">
+                <div class="icon-wrap"><i class="fa-solid fa-users"></i></div>
+                <div class="card-body">
+                    <h5 data-i18n="features.validation.title">Crowd Validation</h5>
+                    <p data-i18n="features.validation.desc">Camera updates weighted by recent confirmations to reduce stale alerts.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="download" class="download-section">
+    <div class="dl-glow-bg" aria-hidden="true"></div>
+    <canvas class="dl-particles" aria-hidden="true"></canvas>
+    <div class="dl-container">
+        <div class="dl-col dl-content reveal fade-left">
+            <h2 class="dl-title" data-i18n-html="download.titleHtml">
+                RadarGuard Alerts: <span class="dl-accent">Speed camera</span>
+            </h2>
+            <p class="dl-tagline" data-i18n="download.tagline">
+                Real‑time speed camera & hazard intelligence that keeps you aware before you arrive — optimized for accuracy, battery efficiency and privacy.
+            </p>
+            <div class="dl-stores">
+                <a href="https://apps.apple.com/us/app/radarguard-alerts-speed-camera/id6751195451?platform=iphone" class="store-btn store-btn--apple pulse-badge"
+                   target="_blank" rel="noopener"
+                   aria-label="Download RadarGuard Alerts on the App Store"
+                   data-i18n-attr="aria-label:download.appStoreAria">
+                    <span class="store-icon"><i class="fab fa-apple"></i></span>
+                    <span class="store-text">
+                        <span class="overline" data-i18n="store.getItOn">Get it on</span>
+                        <span class="mainline" data-i18n="store.appStore">App Store</span>
+                    </span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.SpeedCamera.RadarAlerts" class="store-btn store-btn--google pulse-badge"
+                   target="_blank" rel="noopener"
+                   aria-label="Download RadarGuard Alerts on Google Play"
+                   data-i18n-attr="aria-label:download.playStoreAria">
+                    <span class="store-icon"><i class="fab fa-google-play"></i></span>
+                    <span class="store-text">
+                        <span class="overline" data-i18n="store.getItOn">Get it on</span>
+                        <span class="mainline" data-i18n="store.playStore">Google Play</span>
+                    </span>
+                </a>
+            </div>
+            <ul class="dl-points">
+                <li><i class="fa-solid fa-bolt"></i> <span data-i18n="download.point1">Ultra‑low latency live alerts.</span></li>
+                <li><i class="fa-solid fa-shield-halved"></i> <span data-i18n="download.point2">Privacy‑first: no selling of trip data.</span></li>
+                <li><i class="fa-solid fa-users"></i> <span data-i18n="download.point3">Crowd‑validated camera network.</span></li>
+            </ul>
+            <p class="dl-micro" data-beta-block data-i18n-html="download.betaHtml">
+                Want early feature previews? <a href="#beta" class="dl-link" data-i18n="download.betaLink">Join the beta</a>.
+            </p>
+        </div>
+        <div class="dl-col dl-device-wrap reveal rise-in">
+            <figure class="device-stage" id="deviceStage" aria-label="App interface preview" data-i18n-attr="aria-label:download.devicePreviewAria">
+                <div class="device-shell">
+                    <div class="device-glow" aria-hidden="true"></div>
+                    <img src="assets/img/app-mockup.png" alt="RadarGuard Alerts live interface" class="device-screen" loading="lazy"
+                         onerror="this.classList.add('fallback');"
+                         data-i18n-attr="alt:download.deviceImageAlt">
+                    <div class="device-reflect" aria-hidden="true"></div>
+                </div>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer" id="footer">
+    <div class="footer-glow" aria-hidden="true"></div>
+    <div class="footer-inner">
+        <div class="footer-col footer-brand">
+            <div class="footer-logo"><span class="logo-accent">RadarGuard</span> Alerts</div>
+            <p class="footer-tagline" data-i18n="footer.tagline">Real‑time speed camera & hazard awareness. Drive informed.</p>
+            <div class="footer-social">
+                <a href="#" aria-label="Twitter / X" class="soc-link" ><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram" class="soc-link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="TikTok" class="soc-link"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" aria-label="YouTube" class="soc-link"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="Discord" class="soc-link"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col footer-links">
+            <h6 class="f-head" data-i18n="footer.productHead">Product</h6>
+            <ul>
+                <li><a href="#features" data-i18n="cta.features">Features</a></li>
+                <li><a href="#download" data-i18n="footer.download">Download</a></li>
+                <li><a href="#beta" data-disabled="true" data-i18n="footer.betaAccess">Beta Access</a></li>
+                <li><a href="#pricing" data-disabled="true" data-i18n="footer.pricingSoon">Pricing (Soon)</a></li>
+                <li><a href="#faq" data-disabled="true" data-i18n="footer.faqPlaceholder">FAQ (Placeholder)</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col footer-links" data-disabled="false">
+            <h6 class="f-head" data-i18n="footer.resourcesHead">Resources</h6>
+            <ul>
+                <li><a href="#support" data-i18n="footer.support">Support</a></li>
+                <li data-disabled="true"><a href="#blog" data-i18n="footer.blogPlaceholder">Blog (Placeholder)</a></li>
+                <li data-disabled="true"><a href="#docs" data-i18n="footer.docsPlanned">Docs (Planned)</a></li>
+                <li data-disabled="true"><a href="#changelog" data-i18n="footer.changelog">Changelog</a></li>
+                <li data-disabled="true"><a href="#community" data-i18n="footer.community">Community</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col footer-links">
+            <h6 class="f-head" data-i18n="footer.companyHead">Company</h6>
+            <ul>
+                <li><a href="#about" data-i18n="footer.aboutUs">About Us</a></li>
+                <li><a href="#privacy" data-i18n="footer.privacyPolicy">Privacy Policy</a></li>
+                <li><a href="#terms" data-i18n="footer.termsOfUse">Terms of Use</a></li>
+                <li><a href="#jobs" data-disabled="true" data-i18n="footer.careersFuture">Careers (Future)</a></li>
+                <li><a href="#legal" data-disabled="true" data-i18n="footer.legalCenter">Legal Center</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col footer-news">
+            <h6 class="f-head" data-i18n="footer.stayUpdated">Stay Updated</h6>
+            <p class="news-text" data-i18n="footer.newsText">Get early radar data drops & beta feature access. No spam.</p>
+            <form class="news-form" action="#" method="post">
+                <label class="sr-only" for="newsletter-email" data-i18n="footer.emailLabel">Email</label>
+                <input type="email" id="newsletter-email" name="email" placeholder="Heyv@example.com" required>
+                <button type="submit" aria-label="Subscribe to updates" data-i18n="footer.subscribeBtn">Subscribe</button>
+            </form>
+            <small class="privacy-hint" data-i18n-html="footer.privacyNoteHtml">
+                By subscribing you agree to our <a href="#privacy" data-i18n="footer.privacyPolicyLink">privacy policy</a>.
+            </small>
+        </div>
+    </div>
+
+    <div class="footer-sep" aria-hidden="true"></div>
+
+    <div class="footer-bottom">
+        <p class="copy" data-i18n-html="footer.copyrightHtml">
+            &copy; <span id="year"></span> RadarGuard Alerts: Speed camera. All rights reserved.
+        </p>
+        <ul class="legal-inline">
+            <li><a href="#privacy" data-i18n="footer.privacyPolicyShort">Privacy</a></li>
+            <li><a href="#terms" data-i18n="footer.termsShort">Terms</a></li>
+            <li><a href="#cookies" data-i18n="footer.cookies">Cookies</a></li>
+            <li><a href="#contact" data-i18n="footer.contact">Contact</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script src="index.js"></script>
+</body>
+</html>
